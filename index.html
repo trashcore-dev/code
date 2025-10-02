@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Code Share</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .code-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .code-header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .copy-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+        
+        .copy-btn.copied {
+            background: #2ecc71;
+        }
+        
+        pre {
+            overflow-x: auto;
+            padding: 20px;
+            line-height: 1.5;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            background: #f8f9fa;
+        }
+        
+        code {
+            color: #2c3e50;
+        }
+        
+        .instructions {
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none; /* Hidden by default */
+        }
+        
+        .instructions.active {
+            display: block;
+        }
+        
+        .instructions h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions h2 i {
+            font-size: 1.4rem;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .code-type-badge {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .html-badge {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .js-badge {
+            background: #f39c12;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .code-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Code Share</h1>
+            <p class="subtitle">Copy the code below and use it in your project</p>
+        </header>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <div class="code-title">
+                    <span id="typeIndicator">Detecting...</span>
+                </div>
+                <button class="copy-btn" id="copyButton">
+                    <span>Copy Code</span>
+                </button>
+            </div>
+            <pre><code id="codeSnippet"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 12px 24px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <button onclick="alert('Hello World!')">Click Me</button>
+    </div>
+    
+    <script>
+        // Your JavaScript code here
+        console.log("Page loaded successfully!");
+    </script>
+</body>
+</html></code></pre>
+        </div>
+        
+        <!-- HTML Instructions -->
+        <div class="instructions" id="htmlInstructions">
+            <h2><i>📄</i> HTML Usage Guide</h2>
+            <ol>
+                <li>Copy the code using the button above</li>
+                <li>Paste into a new file and save with <code>.html</code> extension (e.g., <code>my-page.html</code>)</li>
+                <li>Open the file directly in any web browser</li>
+                <li>To modify styles, edit the CSS inside the <code><style></code> tags</li>
+                <li>To add interactivity, edit the JavaScript inside the <code><script></code> tags</li>
+            </ol>
+        </div>
+        
+        <!-- JavaScript Instructions -->
+        <div class="instructions" id="jsInstructions">
+            <h2><i>⚙️</i> JavaScript Usage Guide</h2>
+            <ol>
+                <li>Copy the code using the button above</li>
+                <li>Paste into a new file and save with <code>.js</code> extension (e.g., <code>script.js</code>)</li>
+                <li>Include it in your HTML file using: <br><code><script src="script.js"></script></code></li>
+                <li>Place the script tag before the closing <code></body></code> tag for best performance</li>
+                <li>Ensure your HTML elements exist before your JavaScript tries to access them</li>
+            </ol>
+        </div>
+        
+        <footer>
+            <p>Smart code sharing • Instructions adapt to your code type</p>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const codeSnippet = document.getElementById('codeSnippet');
+        const typeIndicator = document.getElementById('typeIndicator');
+        const htmlInstructions = document.getElementById('htmlInstructions');
+        const jsInstructions = document.getElementById('jsInstructions');
+        const copyButton = document.getElementById('copyButton');
+        
+        // Detect code type
+        function detectCodeType(code) {
+            const codeStr = code.trim().toLowerCase();
+            
+            // Check for HTML indicators
+            if (codeStr.includes('<!doctype html') || 
+                codeStr.includes('<html') || 
+                codeStr.includes('<head') || 
+                codeStr.includes('<body')) {
+                return 'html';
+            }
+            
+            // Check for JavaScript indicators
+            if (codeStr.includes('function') || 
+                codeStr.includes('const ') || 
+                codeStr.includes('let ') || 
+                codeStr.includes('var ') || 
+                codeStr.includes('document.') || 
+                codeStr.includes('console.') || 
+                codeStr.includes('=>') || 
+                codeStr.includes('export ') || 
+                codeStr.includes('import ')) {
+                return 'js';
+            }
+            
+            // Default to HTML if mixed content
+            return 'html';
+        }
+        
+        // Update UI based on code type
+        function updateCodeType() {
+            const code = codeSnippet.textContent;
+            const type = detectCodeType(code);
+            
+            // Update type indicator
+            typeIndicator.textContent = type.toUpperCase();
+            typeIndicator.className = `code-type-badge ${type}-badge`;
+            
+            // Show appropriate instructions
+            htmlInstructions.classList.toggle('active', type === 'html');
+            jsInstructions.classList.toggle('active', type === 'js');
+        }
+        
+        // Copy functionality
+        copyButton.addEventListener('click', function() {
+            const textArea = document.createElement('textarea');
+            textArea.value = codeSnippet.textContent;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            textArea.style.top = '-9999px';
+            document.body.appendChild(textArea);
+            
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            
+            document.body.removeChild(textArea);
+            
+            // Visual feedback
+            const originalText = this.innerHTML;
+            this.innerHTML = '<span>Copied!</span>';
+            this.classList.add('copied');
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('copied');
+            }, 2000);
+        });
+        
+        // Initialize on page load
+        updateCodeType();
+    </script>
+</body>
+</html>
